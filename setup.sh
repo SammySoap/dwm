@@ -30,12 +30,12 @@ wget -O dmenu.tar.gz "https://dl.suckless.org/tools/dmenu-${DMENU_VERSION}.tar.g
 tar -xf dwm.tar.gz
 tar -xf dmenu.tar.gz
 
-cd ./dwm
+cd "./dwm-${DWM_VERSION}"
 TERMINAL="static const char *termcmd[]  = { "xterm", NULL };"
 sed -i "61s/.*/${TERMINAL}/" "config.h"
 sudo make clean install
 
-cd ../dmenu
+cd "../dmenu-${DMENU_VERSION}"
 sudo make clean install
 
 cd ../
