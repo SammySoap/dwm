@@ -49,6 +49,7 @@ if prompt "Do you want to install waterfox?"; then
     wget -O waterfox.tar.bz2 "https://cdn1.waterfox.net/waterfox/releases/G6.0.16/Linux_x86_64/waterfox-G6.0.16.tar.bz2"
     tar -xf waterfox.tar.bz2
     sudo mv ./waterfox /opt/
+    sudo apt install libgtk-3-dev libasound2-dev libdbus-glib-1-2
     sudo ln -s /opt/waterfox/waterfox /usr/bin/
 fi
 
