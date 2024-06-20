@@ -34,8 +34,8 @@ XTerm*allowTitleOps:            false
 XTerm*allowFontOps:             false
 
 ! Mouse cursor configuration, I prefer to keep it simple.
-XTerm*pointerColor:             white
-XTerm*pointerColorBackground:   black
+XTerm*pointerColor:             black
+XTerm*pointerColorBackground:   white
 XTerm*pointerShape:             left_ptr
 
 ! Only select text, not empty space around it.
@@ -89,17 +89,17 @@ XTerm*Form.menubar.vertDistance: 0
 !XTerm*Form.menubar.Thickness:  0
 
 ! Fonts
-XTerm*vt100.faceName:           xft:Consolas:size=18:antialias=true:style=Regular
-XTerm*vt100.boldFont:           xft:Consolas:size=18:antialias=true:style=Bold
+XTerm*vt100.faceName:           xft:Consolas:size=16:antialias=true:style=Regular
+XTerm*vt100.boldFont:           xft:Consolas:size=16:antialias=true:style=Bold
 
 ! Size and Title
-XTerm*vt100.geometry:           100x30
+! XTerm*vt100.geometry:           100x30
 XTerm*title:                    Terminal
 XTerm*iconHint:                 /home/taviso/.icons/computer_x11.xpm
 
 ! Terminal Colors
 XTerm*vt100.background:     #212121
-XTerm*vt100.foreground:     #80FF80
+XTerm*vt100.foreground:     white
 XTerm*cursorColor:          #ffffff
 
 ! I like bold items to be in bright white.
@@ -154,14 +154,10 @@ XTerm*color15:              #ffffff
 
 ! Below:
 !
-! - I have some old apps that use Alt-F4, but thats sometimes difficult to
-!       press so Ctrl-Shift-F4 does the same thing.
 ! - Ctrl-MouseWheel can be used to increase and descrease font size.
-! - Ctrl-I is totally useless, because it is literally impossible for
-!       applications to differentiate it from Tab. You can remap it to some
-!       other harder-to-press keybinding here, I use it for Italics in
-!       wordperfect.
 
 XTerm*vt100.translations:   #override           \n\
   ! Ctrl <Btn4Up>:          larger-vt-font()    \n\
   ! Ctrl <Btn5Up>:          smaller-vt-font()   \n\
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
