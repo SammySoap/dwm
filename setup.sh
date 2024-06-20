@@ -22,7 +22,7 @@ prompt() {
 
 echo -e "${GREEN}Beginning of script${NC}"
 
-sudo apt update
+sudo apt update && sudo apt install make gcc libx11-dev libxft-dev libxinerama-dev xorg
 
 wget -O dwm.tar.gz "https://dl.suckless.org/dwm/dwm-${DWM_VERSION}.tar.gz"
 wget -O dmenu.tar.gz "https://dl.suckless.org/tools/dmenu-${DMENU_VERSION}.tar.gz"
