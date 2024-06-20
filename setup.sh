@@ -3,6 +3,8 @@
 DWM_VERSION="6.5"
 DMENU_VERSION="5.3"
 
+TERMINAL="static const char *termcmd[]  = { \"xterm\", NULL };"
+
 # Define colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -31,8 +33,8 @@ tar -xf dwm.tar.gz
 tar -xf dmenu.tar.gz
 
 cd "./dwm-${DWM_VERSION}"
-TERMINAL="static const char *termcmd[]  = { \"xterm\", NULL };"
-sed -i "61s/.*/${TERMINAL}/" "config.h"
+
+sed -i "61s/.*/${TERMINAL}/" "config.def.h"
 sudo make clean install
 
 cd "../dmenu-${DMENU_VERSION}"
