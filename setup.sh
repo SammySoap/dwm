@@ -31,7 +31,7 @@ tar -xf dwm.tar.gz
 tar -xf dmenu.tar.gz
 
 cd "./dwm-${DWM_VERSION}"
-TERMINAL="static const char *termcmd[]  = { "xterm", NULL };"
+TERMINAL="static const char *termcmd[]  = { 'xterm', NULL };"
 sed -i "61s/.*/${TERMINAL}/" "config.h"
 sudo make clean install
 
