@@ -5,6 +5,6 @@
 # Getting started
 
 ```
-wget https://raw.githubusercontent.com/SammySoap/dwm-config/master/setup.sh
+wget https://raw.githubusercontent.com/SammySoap/dwm/master/setup.sh
 chmod +x setup.sh
 ```

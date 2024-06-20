@@ -30,24 +30,23 @@ wget -O dmenu.tar.gz "https://dl.suckless.org/tools/dmenu-${DMENU_VERSION}.tar.g
 tar -xf dwm.tar.gz
 tar -xf dmenu.tar.gz
 
-cd ~/dwm
+cd ./dwm
 TERMINAL="static const char *termcmd[]  = { "xterm", NULL };"
 sed -i "61s/.*/${TERMINAL}/" "config.h"
 sudo make clean install
 
-cd ~/dmenu
+cd ../dmenu
 sudo make clean install
 
-cd ~/
+cd ../
 
-echo "
 wget https://raw.githubusercontent.com/SammySoap/dwm/master/.xinitrc
 wget https://raw.githubusercontent.com/SammySoap/dwm/master/.Xresources
 
 if prompt "Do you want to install waterfox?"; then
     wget -O waterfox.tar.bz2 "https://cdn1.waterfox.net/waterfox/releases/G6.0.16/Linux_x86_64/waterfox-G6.0.16.tar.bz2"
     tar -xf waterfox.tar.bz2
-    sudo mv ~/waterfox /opt/
+    sudo mv ./waterfox /opt/
     sudo ln -s /opt/waterfox/waterfox /usr/bin/
 fi
 
