@@ -42,8 +42,8 @@ sudo make clean install
 
 cd ../
 
-wget https://raw.githubusercontent.com/SammySoap/dwm/master/.xinitrc
-wget https://raw.githubusercontent.com/SammySoap/dwm/master/.Xresources
+wget https://raw.githubusercontent.com/SammySoap/dwm/dev/.xinitrc
+wget https://raw.githubusercontent.com/SammySoap/dwm/dev/.Xresources
 
 if prompt "Do you want to install waterfox?"; then
     sudo apt install libgtk-3-dev libasound2-dev libdbus-glib-1-2
@@ -51,5 +51,10 @@ if prompt "Do you want to install waterfox?"; then
     sudo tar -xf waterfox.tar.bz2 -C /opt
     sudo ln -s /opt/waterfox/waterfox /usr/bin/
 fi
+
+cat <<EOL > "./.config/gtk-3.0/settings.ini"
+[Settings]
+gtk-application-prefer-dark-theme=1
+EOL
 
 echo -e "\n\n\n\n${GREEN}Done, 'startx' to start dwm${NC}"
