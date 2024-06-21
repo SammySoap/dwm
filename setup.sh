@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#github branch (main/dev)
+DEVELOPMENT_BRANCH="dev"
+
 DWM_VERSION="6.5"
 DMENU_VERSION="5.3"
 
@@ -13,19 +16,33 @@ NC='\033[0m' # No Color
 
 prompt() {
     while true; do
-        read -p "$1 (y/N): " option
+        read -p "$1 [y/n]: " option
         case $option in
             [Yy]* ) return 0;;
             [Nn]* ) return 1;;
-            * ) return 1;;
+            * ) echo "Please answer yes (y) or no (n).";;
         esac
     done
 }
 
 echo -e "${GREEN}Beginning of script${NC}"
 
-sudo apt update && sudo apt install make gcc libx11-dev libxft-dev libxinerama-dev xorg
+#installs dwm dependencies
+packages="make gcc libx11-dev libxft-dev libxinerama-dev xorg"
+sudo apt update && sudo apt install $packages
 
+#prompt to set dark mode in the configuration file
+if prompt "${YELLOW}Do you want to install xdg-utils to set dark mode as default theme?${NC}"; then
+    
+    sudo apt install xdg-utils
+    cat <<EOL > "./.config/gtk-3.0/settings.ini"
+    [Settings]
+    gtk-application-prefer-dark-theme=1
+EOL
+    
+fi
+
+#download dwm and dmenu from the suckless website
 wget -O dwm.tar.gz "https://dl.suckless.org/dwm/dwm-${DWM_VERSION}.tar.gz"
 wget -O dmenu.tar.gz "https://dl.suckless.org/tools/dmenu-${DMENU_VERSION}.tar.gz"
 
@@ -42,19 +59,23 @@ sudo make clean install
 
 cd ../
 
-wget https://raw.githubusercontent.com/SammySoap/dwm/dev/.xinitrc
-wget https://raw.githubusercontent.com/SammySoap/dwm/dev/.Xresources
+#download configuration files for X server and xterm
+wget "https://raw.githubusercontent.com/SammySoap/dwm/${DEVELOPMENT_BRANCH}/.xinitrc"
+wget "https://raw.githubusercontent.com/SammySoap/dwm/${DEVELOPMENT_BRANCH}/.Xresources"
 
-if prompt "Do you want to install waterfox?"; then
+
+#prompt to install the browser waterfox (firefox fork)
+if prompt "${YELLOW}Do you want to install waterfox?${NC}"; then
+    
+    #waterfox dependencies
     sudo apt install libgtk-3-dev libasound2-dev libdbus-glib-1-2
+    
+    #install waterfox
     wget -O waterfox.tar.bz2 "https://cdn1.waterfox.net/waterfox/releases/G6.0.16/Linux_x86_64/waterfox-G6.0.16.tar.bz2"
     sudo tar -xf waterfox.tar.bz2 -C /opt
     sudo ln -s /opt/waterfox/waterfox /usr/bin/
+    
 fi
 
-cat <<EOL > "./.config/gtk-3.0/settings.ini"
-[Settings]
-gtk-application-prefer-dark-theme=1
-EOL
 
 echo -e "\n\n\n\n${GREEN}Done, 'startx' to start dwm${NC}"
