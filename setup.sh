@@ -16,7 +16,7 @@ NC='\033[0m' # No Color
 
 prompt() {
     while true; do
-        read -p "$1 [y/n]: " option
+        read -p "${YELLOW}$1 [y/n]:${NC} " option
         case $option in
             [Yy]* ) return 0;;
             [Nn]* ) return 1;;
@@ -27,14 +27,16 @@ prompt() {
 
 echo -e "${GREEN}Beginning of script${NC}"
 
+cd $HOME
+
 #installs dwm dependencies
 packages="make gcc libx11-dev libxft-dev libxinerama-dev xorg"
 sudo apt update && sudo apt install $packages
 
 #prompt to set dark mode in the configuration file
-if prompt "${YELLOW}Do you want to install xdg-utils to set dark mode as default theme?${NC}"; then
+if prompt "Do you want to set dark mode as default theme?"; then
     
-    sudo apt install xdg-utils
+    mkdir ./.config/gtk-3.0
     cat <<EOL > "./.config/gtk-3.0/settings.ini"
     [Settings]
     gtk-application-prefer-dark-theme=1
@@ -65,7 +67,7 @@ wget "https://raw.githubusercontent.com/SammySoap/dwm/${DEVELOPMENT_BRANCH}/.Xre
 
 
 #prompt to install the browser waterfox (firefox fork)
-if prompt "${YELLOW}Do you want to install waterfox?${NC}"; then
+if prompt "Do you want to install waterfox?"; then
     
     #waterfox dependencies
     sudo apt install libgtk-3-dev libasound2-dev libdbus-glib-1-2
