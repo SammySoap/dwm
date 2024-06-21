@@ -16,7 +16,7 @@ NC='\033[0m' # No Color
 
 prompt() {
     while true; do
-        read -p "${YELLOW}$1 [y/n]:${NC} " option
+        read -p "$(echo -e "${YELLOW}${1} [y/n]:${NC} ")" option
         case $option in
             [Yy]* ) return 0;;
             [Nn]* ) return 1;;
@@ -36,7 +36,7 @@ sudo apt update && sudo apt install $packages
 #prompt to set dark mode in the configuration file
 if prompt "Do you want to set dark mode as default theme?"; then
     
-    mkdir ./.config/gtk-3.0
+    mkdir -p ./.config/gtk-3.0
     cat <<EOL > "./.config/gtk-3.0/settings.ini"
     [Settings]
     gtk-application-prefer-dark-theme=1
